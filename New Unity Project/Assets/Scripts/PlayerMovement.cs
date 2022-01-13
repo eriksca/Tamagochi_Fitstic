@@ -23,7 +23,12 @@ public class PlayerMovement : MonoBehaviour
         if(xValue!=0 || zValue != 0)
         {
             //rb.MovePosition(rb.position+direction);
+            rb.drag = 0;
             rb.AddForce(direction);
+        }
+        else
+        {
+            rb.drag = 10f;
         }
         
 
