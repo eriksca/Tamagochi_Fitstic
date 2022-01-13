@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.canPlay)
+        {
+            return;
+        }
+
         float xValue = Input.GetAxisRaw("Horizontal")*Time.deltaTime*speedAmt;
         float zValue = Input.GetAxisRaw("Vertical")*Time.deltaTime*speedAmt;
 
