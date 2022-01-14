@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 40481933300955158}
   - component: {fileID: -5731612385631051070}
+  - component: {fileID: 1571780091002380462}
   m_Layer: 0
   m_Name: Bistecca
   m_TagString: Untagged
@@ -128,6 +129,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _foodStats: {fileID: 11400000, guid: ecc44365120337a44b7a15647112c2fc, type: 2}
+--- !u!135 &1571780091002380462
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847805610770113196}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1963545637221146991
 GameObject:
   m_ObjectHideFlags: 0
