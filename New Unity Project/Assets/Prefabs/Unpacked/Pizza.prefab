@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2306354959254735469}
   - component: {fileID: 4933451224027635491}
+  - component: {fileID: 1958928527090519149}
   m_Layer: 0
   m_Name: Pizza
   m_TagString: Untagged
@@ -131,6 +132,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _foodStats: {fileID: 11400000, guid: cf1802ec784dd774e8224a23d51bf390, type: 2}
+--- !u!135 &1958928527090519149
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3119307002726486231}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.01
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4905929324710643754
 GameObject:
   m_ObjectHideFlags: 0
