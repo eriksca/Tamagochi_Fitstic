@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private float health;
-    private float happiness;
-    private float energy;
+    private float _health;
+    private float _happiness;
+    private float _energy;
    
-    public float Health { get { return health; } }
-    public float Happiness { get { return happiness; } }
-    public float Energy { get { return energy; } }
+    public float Health { get { return _health; } }
+    public float Happiness { get { return _happiness; } }
+    public float Energy { get { return _energy; } }
    
     /// <summary>
     /// timer variables utili per gestire le funzioni di decremento statistiche player durante l'esecuzione
@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 100;
-        happiness = 100;
-        energy = 100;
+        _health = 100;
+        _happiness = 100;
+        _energy = 100;
         canPlay = true;
         //InvokeRepeating(nameof(ModifyHealth), 2f, 3f);
     }
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0 || happiness <= 0 || energy <= 0)
+        if (_health <= 0 || _happiness <= 0 || _energy <= 0)
         {
             canPlay = false;
             return;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void ManagePlayerStats()
     {
-        if (health >= 0 && healthTimer >= 0)
+        if (_health >= 0 && healthTimer >= 0)
         {
             //Debug.Log(healthTimer);
             healthTimer -= Time.deltaTime;
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
                 healthTimer = maxHealthTimer;
             }
         }
-        if (happiness >= 0 && happinessTimer >= 0)
+        if (_happiness >= 0 && happinessTimer >= 0)
         {
             happinessTimer -= Time.deltaTime;
             if (happinessTimer <= 0)
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
                 happinessTimer = maxHappinessTimer;
             }
         }
-        if (energy >= 0 && energyTimer >= 0)
+        if (_energy >= 0 && energyTimer >= 0)
         {
             energyTimer -= Time.deltaTime;
             if (energyTimer <= 0)
@@ -80,28 +80,28 @@ public class GameManager : MonoBehaviour
 
     private void ModifyHealth(float amt)
     {
-        if (health >= 0)
+        if (_health >= 0)
         {
-            health += amt;
-            Debug.Log($"Health: {health}");
+            _health += amt;
+            Debug.Log($"Health: {_health}");
         }
         
     }
     private void ModifyHappiness(float amt)
     {
-        if (happiness >= 0)
+        if (_happiness >= 0)
         {
-           happiness += amt;
-            Debug.LogWarning($"Happiness: {happiness}");
+           _happiness += amt;
+            Debug.LogWarning($"Happiness: {_happiness}");
         }
 
     }
     private void ModifyEnergy(float amt)
     {
-        if (energy >= 0)
+        if (_energy >= 0)
         {
-            energy +=amt;
-            Debug.LogError($"Energy: {energy}");
+            _energy +=amt;
+            Debug.LogError($"Energy: {_energy}");
         }
 
     }
