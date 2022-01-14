@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
     private void SyncStats()
     {
         SetHealth(gManager.Health);
-        //SetHappiness(gManager.Happiness);
-        //SetEnergy(gManager.Energy);
+        SetHappiness(gManager.Happiness);
+        SetEnergy(gManager.Energy);
     }
 }
