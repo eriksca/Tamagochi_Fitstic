@@ -24,18 +24,25 @@ public class GameManager : MonoBehaviour
     [SerializeField] float maxEnergyTimer;
 
     public static bool canPlay;
+
+
+    /*private float _foodCarbs;
+    private float _foodFats;
+    private float _foodProteins;*/
+    public static FoodData foodStats = null;
     
-    // Start is called before the first frame update
+    
     void Start()
     {
         _health = 100;
         _happiness = 100;
         _energy = 100;
         canPlay = true;
-        //InvokeRepeating(nameof(ModifyHealth), 2f, 3f);
+        foodStats = null;
+       
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         if (_health <= 0 || _happiness <= 0 || _energy <= 0)
@@ -44,6 +51,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         ManagePlayerStats();
+        
     }
 
     private void ManagePlayerStats()
@@ -105,6 +113,20 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    public void EatFood()
+    {
+        // se il pannello è aperto 
+        // se il fooddata è diverso da null
+        if (foodStats != null)
+        {
+            Debug.Log(foodStats.FoodName);
+            Debug.Log($"Carbs: {foodStats.CarboAmount}\n" +
+            $"Fat: {foodStats.FatAmount} \nProtein: {foodStats.ProteinAmount}");
+        }
+    }
+
+    
 
     
 

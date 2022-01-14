@@ -173,6 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7454628884426321817}
+  - component: {fileID: 7506764612077365477}
   m_Layer: 0
   m_Name: Sushi
   m_TagString: Untagged
@@ -197,6 +198,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7506764612077365477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7800227776176895267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 062d9264c057c414c9f712b0e14e5d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _foodStats: {fileID: 11400000, guid: 12193d364d73e7f4692be5837c286f4b, type: 2}
 --- !u!1 &7891246834944612518
 GameObject:
   m_ObjectHideFlags: 0
