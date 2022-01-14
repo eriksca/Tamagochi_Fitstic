@@ -18,9 +18,10 @@ public class MyFood : MonoBehaviour
     {
         uiManager.OpenFoodStatsPanel();
         SendFoodData();
-       
+        
         uiManager.foodStatsText.text = $"Carbs: {_foodStats.CarboAmount}\n" +
             $"Fat: {_foodStats.FatAmount} \nProtein: {_foodStats.ProteinAmount}";
+        uiManager.foodImg.sprite = _foodStats.FoodTexture;
     }
     private void OnTriggerExit(Collider other)
     {

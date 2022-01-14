@@ -16,3 +16,4 @@ MonoBehaviour:
   carboAmount: 10
   fatAmount: 0
   proteinAmount: 0
+  foodTexture: {fileID: 21300000, guid: fd4ee3b1cb7519c4382de77ff9f9cfa0, type: 3}

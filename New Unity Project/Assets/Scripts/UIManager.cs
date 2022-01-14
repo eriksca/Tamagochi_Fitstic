@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Slider energySlider;
 
     public TMP_Text foodStatsText;
+    public Image foodImg;
     [SerializeField] GameObject foodStatsPanel;
     
 
