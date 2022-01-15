@@ -11,6 +11,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]Slider healthSlider;
     [SerializeField] Slider happinessSlider;
     [SerializeField] Slider energySlider;
+    [SerializeField] TMP_Text health_Text;
+    [SerializeField] TMP_Text happiness_Text;
+    [SerializeField] TMP_Text energy_Text;
 
     public TMP_Text foodStatsText;
     public Image foodImg;
@@ -44,6 +47,13 @@ public class UIManager : MonoBehaviour
         SetHealth(gManager.Health);
         SetHappiness(gManager.Happiness);
         SetEnergy(gManager.Energy);
+        SyncTexts();
+    }
+    private void SyncTexts()
+    {
+        health_Text.text = gManager.Health.ToString();
+        happiness_Text.text = gManager.Happiness.ToString();
+        energy_Text.text = gManager.Energy.ToString();
     }
 
     public void OpenFoodStatsPanel()

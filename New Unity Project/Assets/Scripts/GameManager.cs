@@ -25,18 +25,25 @@ public class GameManager : MonoBehaviour
 
     public static bool canPlay;
 
-
-    /*private float _foodCarbs;
-    private float _foodFats;
-    private float _foodProteins;*/
     public static FoodData foodStats = null;
+
+    private float carbsRefHappinessModifier = -3;
+    private float carbsRefHealthModifier = +3;
+    private float carbsRefWeight = 10;
+   
+    private float proteinsRefEnergyModifier = +3;
+    float proteinsRefWeight = 10;
+   
+    private float fatsRefHappinessModifier = 2;
+    private float fatsRefHealthModifier = -4;
+    private float fatsRefWeight = 3;
     
     
     void Start()
     {
-        _health = 100;
-        _happiness = 100;
-        _energy = 100;
+        _health = 50;
+        _happiness = 50;
+        _energy = 50;
         canPlay = true;
         foodStats = null;
        
@@ -120,15 +127,64 @@ public class GameManager : MonoBehaviour
         // se il fooddata è diverso da null
         if (foodStats != null)
         {
-            Debug.Log(foodStats.FoodName);
-            Debug.Log($"Carbs: {foodStats.CarboAmount}\n" +
-            $"Fat: {foodStats.FatAmount} \nProtein: {foodStats.ProteinAmount}");
+            //Debug.Log(foodStats.FoodName);
+            //Debug.Log($"Carbs: {foodStats.CarboAmount}\n" +
+            //$"Fat: {foodStats.FatAmount} \nProtein: {foodStats.ProteinAmount}");
+            //CalculateHealthVariation();
+            CalculateFoodStatsModifier();
+            ApplyFoodVariationsToPlayer();
         }
     }
 
-    
+   
 
-    
+    private float CalculateValueAmount(float modifier,float foodWeight, float refWeight)
+    {
+        float value = modifier * foodWeight / refWeight;
+        return value;
+    }
+ 
+
+    private float CalculateHealthVariation()
+    {
+        float carbsHealthAmt = CalculateValueAmount(carbsRefHealthModifier, foodStats.CarboAmount, carbsRefWeight);
+        
+        float fatsHealthAmt = CalculateValueAmount(fatsRefHealthModifier, foodStats.FatAmount, fatsRefWeight);
+        float finalHealthVariation = carbsHealthAmt + fatsHealthAmt;
+        //Debug.Log($"Final Health VAriation {finalHealthVariation}");
+        return finalHealthVariation;
+    }
+    private float CalculateHappinessVariation()
+    {
+        float fatsHappinessAmt = CalculateValueAmount(fatsRefHappinessModifier, foodStats.FatAmount, fatsRefWeight);
+        float carbsHappinessAmt = CalculateValueAmount(carbsRefHappinessModifier, foodStats.CarboAmount, carbsRefWeight);
+        float finalHappinessVariation = fatsHappinessAmt + carbsHappinessAmt;
+        return finalHappinessVariation;
+    }
+    private float CalculateEnergyVariation()
+    {
+        float proteinEnergyAmt = CalculateValueAmount(proteinsRefEnergyModifier, foodStats.ProteinAmount, proteinsRefWeight);
+        return proteinEnergyAmt;
+
+    }
+    private Vector3 CalculateFoodStatsModifier()
+    {
+        Vector3 foodModifierAmount = new Vector3(CalculateHealthVariation(), CalculateHappinessVariation(), CalculateEnergyVariation());
+        Debug.Log($"health_var: {foodModifierAmount.x},  happiness_var: {foodModifierAmount.y} \n energy_var {foodModifierAmount.z}");
+
+        return foodModifierAmount;
+
+    }
+    private void ApplyFoodVariationsToPlayer()
+    {
+        _health += CalculateFoodStatsModifier().x;
+        _happiness += CalculateFoodStatsModifier().y;
+        _energy += CalculateFoodStatsModifier().z;
+    }
+
+
+
+
 
 
 }
