@@ -7,10 +7,12 @@ public class GameManager : MonoBehaviour
     private float _health;
     private float _happiness;
     private float _energy;
+    private float _time;
    
-    public float Health { get { return _health; } }
-    public float Happiness { get { return _happiness; } }
-    public float Energy { get { return _energy; } }
+    public int Health { get { return (int)_health; } }
+    public int Happiness { get { return (int)_happiness; } }
+    public int Energy { get { return (int)_energy; } }
+    public int PlayTime { get { return (int)_time; } }
    
     /// <summary>
     /// timer variables utili per gestire le funzioni di decremento statistiche player durante l'esecuzione
@@ -19,13 +21,21 @@ public class GameManager : MonoBehaviour
     private float happinessTimer=20f;
     private float energyTimer=30f;
 
+    //amount of time before the player loses some of this stats
     [SerializeField] float maxHealthTimer;
     [SerializeField] float maxHappinessTimer;
     [SerializeField] float maxEnergyTimer;
 
+    //manage if the player can move and can eat
     public static bool canPlay;
 
+    //food data passed by MyFood Class on trigger enter, on trigger exit the value returns to null
     public static FoodData foodStats = null;
+    
+    
+    /// <summary>
+    /// fixed variables that I need to calculate how the food will affect my player stats
+    /// </summary>
 
     private float carbsRefHappinessModifier = -3;
     private float carbsRefHealthModifier = +3;
@@ -46,7 +56,7 @@ public class GameManager : MonoBehaviour
         _energy = 50;
         canPlay = true;
         foodStats = null;
-       
+ 
     }
 
    
@@ -63,6 +73,7 @@ public class GameManager : MonoBehaviour
 
     private void ManagePlayerStats()
     {
+        _time += Time.deltaTime;
         if (_health >= 0 && healthTimer >= 0)
         {
             //Debug.Log(healthTimer);
@@ -123,23 +134,18 @@ public class GameManager : MonoBehaviour
 
     public void EatFood()
     {
-        // se il pannello è aperto 
-        // se il fooddata è diverso da null
-        if (foodStats != null)
+        if (foodStats != null && canPlay)
         {
-            //Debug.Log(foodStats.FoodName);
-            //Debug.Log($"Carbs: {foodStats.CarboAmount}\n" +
-            //$"Fat: {foodStats.FatAmount} \nProtein: {foodStats.ProteinAmount}");
-            //CalculateHealthVariation();
             CalculateFoodStatsModifier();
             ApplyFoodVariationsToPlayer();
         }
     }
 
    
-
+    //esegue la proporzione per capire quanto un singolo nutriente di un aliento influisce su di una player stats in base ai valori scritti nel foglio
     private float CalculateValueAmount(float modifier,float foodWeight, float refWeight)
     {
+        // 3g:+3=food data weight: x
         float value = modifier * foodWeight / refWeight;
         return value;
     }

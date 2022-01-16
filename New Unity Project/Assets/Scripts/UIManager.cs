@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TMP_Text health_Text;
     [SerializeField] TMP_Text happiness_Text;
     [SerializeField] TMP_Text energy_Text;
+    [SerializeField] TMP_Text time_Text;
 
     public TMP_Text foodStatsText;
     public Image foodImg;
@@ -54,6 +55,7 @@ public class UIManager : MonoBehaviour
         health_Text.text = gManager.Health.ToString();
         happiness_Text.text = gManager.Happiness.ToString();
         energy_Text.text = gManager.Energy.ToString();
+        time_Text.text = gManager.PlayTime.ToString();
     }
 
     public void OpenFoodStatsPanel()
