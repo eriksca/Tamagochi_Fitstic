@@ -8,16 +8,19 @@ public class MyFood : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] FoodData _foodStats;
     UIManager uiManager;
+    public static bool isFoodStatsDisabled;
     
    
     private void Awake()
     {
         uiManager = FindObjectOfType<UIManager>();
+        isFoodStatsDisabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         uiManager.OpenFoodStatsPanel();
+        isFoodStatsDisabled = false; 
         SendFoodData();
         
         uiManager.foodStatsText.text = $"Carbs: {_foodStats.CarboAmount}\n" +
@@ -33,9 +36,11 @@ public class MyFood : MonoBehaviour
     }
     private void OnDisable()
     {
-        uiManager.CloseFoodStatsPanel();
-        GameManager.foodStats = null;
+        //uiManager.CloseFoodStatsPanel(); ---> da errori perchè tutti i food cercano di disabilitarlo quando si stoppa la scena
+        //GameManager.foodStats = null;
+        ResetFoodData();
         GameManager.closestFood = null;
+        
     }
 
     private void SendFoodData()

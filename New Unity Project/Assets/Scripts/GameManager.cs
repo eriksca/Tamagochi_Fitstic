@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     //food data passed by MyFood Class on trigger enter, on trigger exit the value returns to null
     public static FoodData foodStats = null;
     public static GameObject closestFood = null;
+    private UIManager uIManager;
     
     
     /// <summary>
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
         _energy = 50;
         canPlay = true;
         foodStats = null;
+        uIManager = GetComponent<UIManager>();
        // canEat = true;
  
     }
@@ -140,9 +143,14 @@ public class GameManager : MonoBehaviour
         if (foodStats != null && canPlay && closestFood!=null)
         {
             //canEat = false;
+            //MyFood.isFoodStatsDisabled = true;
+            uIManager.CloseFoodStatsPanel();
+
+           
             CalculateFoodStatsModifier();
             ApplyFoodVariationsToPlayer();
             closestFood.SetActive(false);
+
         }
     }
 
@@ -193,7 +201,10 @@ public class GameManager : MonoBehaviour
         _energy += CalculateFoodStatsModifier().z;
     }
 
-
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+    }
 
 
 

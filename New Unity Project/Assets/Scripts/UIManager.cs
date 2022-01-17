@@ -74,11 +74,14 @@ public class UIManager : MonoBehaviour
     }
     public void CloseFoodStatsPanel()
     {
-        if (foodStatsPanel!=null && !foodStatsPanel.activeInHierarchy)
+       // Debug.LogError($"food stats panel: {foodStatsPanel.activeInHierarchy}");
+        if (foodStatsPanel!=null && !foodStatsPanel.activeInHierarchy && MyFood.isFoodStatsDisabled)
         {
+            
             return;
-        }
 
+        }
+        MyFood.isFoodStatsDisabled = true;
         foodStatsPanel.SetActive(false);
     }
     public void ManagePanel(GameObject panel,bool isActive)

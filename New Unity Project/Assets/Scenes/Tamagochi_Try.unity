@@ -369,7 +369,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 162331779}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2063931986}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &162331779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3362,6 +3374,7 @@ MonoBehaviour:
   maxPrefabs: 20
   coroutineRepeatRate: 3
   foodHeight: 1.2
+  delayOnStart: 3
 --- !u!114 &2063931989
 MonoBehaviour:
   m_ObjectHideFlags: 0
