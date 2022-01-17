@@ -27,8 +27,8 @@ public class PlayerMovement : MonoBehaviour
         if(xValue!=0 || zValue != 0)
         {
             //rb.MovePosition(rb.position+direction);
-            rb.drag = 0;
-            rb.AddForce(direction);
+            rb.drag = 5;
+            rb.AddForce(direction,ForceMode.Force);
         }
         else
         {

@@ -28,9 +28,11 @@ public class GameManager : MonoBehaviour
 
     //manage if the player can move and can eat
     public static bool canPlay;
+    //public static bool ;
 
     //food data passed by MyFood Class on trigger enter, on trigger exit the value returns to null
     public static FoodData foodStats = null;
+    public static GameObject closestFood = null;
     
     
     /// <summary>
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
         _energy = 50;
         canPlay = true;
         foodStats = null;
+       // canEat = true;
  
     }
 
@@ -134,10 +137,12 @@ public class GameManager : MonoBehaviour
 
     public void EatFood()
     {
-        if (foodStats != null && canPlay)
+        if (foodStats != null && canPlay && closestFood!=null)
         {
+            //canEat = false;
             CalculateFoodStatsModifier();
             ApplyFoodVariationsToPlayer();
+            closestFood.SetActive(false);
         }
     }
 

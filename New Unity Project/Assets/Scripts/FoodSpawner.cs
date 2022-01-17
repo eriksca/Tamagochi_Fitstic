@@ -9,14 +9,19 @@ public class FoodSpawner : MonoBehaviour
     [SerializeField] int maxPrefabs;
     [SerializeField] int coroutineRepeatRate;
     bool stopInstantiate;
+    [SerializeField] float foodHeight;
 
     int prefabCounter = 0;
+
+    private Vector3 planeDimensions;
 
 
     private void Start()
     {
         StartCoroutine(SpawnFood());
         stopInstantiate = false;
+        planeDimensions = GameObject.FindGameObjectWithTag("Ground").transform.localScale;
+        Debug.Log(planeDimensions);
     }
 
     private void Update()
@@ -40,7 +45,7 @@ public class FoodSpawner : MonoBehaviour
   
           for (int i = 0; i < maxPrefabs; i++)
           {
-                Vector3 spawnPos = new Vector3(Random.Range(-450, 450), 1, Random.Range(-450, 450));
+                Vector3 spawnPos = new Vector3(Random.Range(planeDimensions.x*10/2, -planeDimensions.x*10/2), foodHeight, Random.Range(planeDimensions.z*10/2, -planeDimensions.z*10 / 2));
                
                 GameObject prefabToPlace = Instantiate(foodPrefabs[prefabCounter], spawnPos, Quaternion.identity);
                 
