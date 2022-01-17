@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
         if (_energy >= 0)
         {
             _energy +=amt;
-            Debug.LogError($"Energy: {_energy}");
+            //Debug.LogError($"Energy: {_energy}");
         }
 
     }

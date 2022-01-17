@@ -19,17 +19,27 @@ public class UIManager : MonoBehaviour
     public TMP_Text foodStatsText;
     public Image foodImg;
     [SerializeField] GameObject foodStatsPanel;
+    [SerializeField] GameObject gameOverPanel;
+    private bool gameOver;
     
 
     private void Start()
     {
         gManager = GetComponent<GameManager>();
+        gameOver = false;
         CloseFoodStatsPanel();
+        ManagePanel(gameOverPanel, false);
 
     }
     private void Update()
     {
         SyncStats();
+        if (!GameManager.canPlay)
+        {
+            ManagePanel(gameOverPanel, true);
+            gameOver = true;
+        }
+        
     }
     public void SetHealth(float health)
     {
@@ -64,13 +74,18 @@ public class UIManager : MonoBehaviour
     }
     public void CloseFoodStatsPanel()
     {
-        if (!foodStatsPanel.activeInHierarchy)
+        if (foodStatsPanel!=null && !foodStatsPanel.activeInHierarchy)
         {
             return;
         }
 
         foodStatsPanel.SetActive(false);
     }
+    public void ManagePanel(GameObject panel,bool isActive)
+    {
+        panel.SetActive(isActive);
+    }
+    
 
     
 }
